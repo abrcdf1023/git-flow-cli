@@ -6,31 +6,43 @@ const inquirer = require('inquirer')
 const version = require('../package.json').version
 
 const {
-  newFeature
+  newBranch,
 } = require('../lib')
 
 const defaultQuestions = [{
   type: 'list',
   name: 'gitCommand',
   message: 'Select Command ...',
-  choices: ['new feature', 'new bug', 'feature done', 'bug fixed', 'release', 'product deploy', 'roll back latest commit(remote)']
+  choices: ['new branch', 'branch done', 'release', 'product deploy', '(UN_SAFE) roll back latest remote commit']
 }]
 
-const newFeatureQuestions = [{
-  name: 'featureName',
-  message: 'Please key in feature name'
+const newBranchQuestions = [{
+  type: 'list',
+  name: 'type',
+  message: 'Select Branch type ...',
+  choices: ['bug', 'feature', 'refactor']
+}, {
+  name: 'name',
+  message: 'Please key in branch name'
 }]
 
 inquirer
   .prompt(defaultQuestions)
   .then((answers) => {
     switch (answers.gitCommand) {
-      case 'new feature':
+      case 'new branch':
         inquirer
-          .prompt(newFeatureQuestions)
+          .prompt(newBranchQuestions)
           .then((answers) => {
-            newFeature(answers.featureName)
+            newBranch(answers.type, answers.name)
           })
+        break
+      case 'branch done':
+        // inquirer
+        //   .prompt(newBugQuestions)
+        //   .then((answers) => {
+        //     newBug(answers.bugName)
+        //   })
         break
       default:
         break
