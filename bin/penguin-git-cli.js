@@ -7,6 +7,7 @@ const version = require('../package.json').version
 
 const {
   newBranch,
+  branchDone,
 } = require('../lib')
 
 const defaultQuestions = [{
@@ -19,11 +20,18 @@ const defaultQuestions = [{
 const newBranchQuestions = [{
   type: 'list',
   name: 'type',
-  message: 'Select Branch type ...',
+  message: 'Please select branch type ...',
   choices: ['bug', 'feature', 'refactor']
 }, {
   name: 'name',
   message: 'Please key in branch name'
+}]
+
+const branchDoneQuestions = [{
+  type: 'list',
+  name: 'type',
+  message: 'Please select update type ...',
+  choices: ['major', 'minor', 'patch']
 }]
 
 inquirer
@@ -38,11 +46,11 @@ inquirer
           })
         break
       case 'branch done':
-        // inquirer
-        //   .prompt(newBugQuestions)
-        //   .then((answers) => {
-        //     newBug(answers.bugName)
-        //   })
+        inquirer
+          .prompt(branchDoneQuestions)
+          .then((answers) => {
+            branchDone(answers.type)
+          })
         break
       default:
         break
