@@ -1,0 +1,20 @@
+{
+  "name": "penguin-git-cli",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": {
+    "penguin-git-cli": "bin/penguin-git-cli.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "colors": "^1.2.5",
+    "execa": "^0.10.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  },
+  "main": "index.js"
+}
