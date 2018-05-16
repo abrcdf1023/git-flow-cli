@@ -8,20 +8,21 @@ const version = require('../package.json').version
 const {
   newBranch,
   branchDone,
+  release,
+  product,
 } = require('../lib')
 
 /**
  * new branch, Create a new branch/
  * branch done, Merge current branch into develop branch and update it version.
- * release, Merge develop branch into release branch and update it version.
- * product deploy, Merge release branch into master and update it version.
- * roll back latest remote commit, This is a UNSAFE option. Please use it cautiously.
+ * release, Merge latest develop branch into release branch.
+ * product, Merge latest release branch into master.
  */
 const defaultQuestions = [{
   type: 'list',
-  name: 'gitCommand',
+  name: 'command',
   message: 'Select Command ...',
-  choices: ['new branch', 'branch done', 'release', 'product deploy', 'roll back latest remote commit']
+  choices: ['new branch', 'branch done', 'release', 'product']
 }]
 
 /**
@@ -30,9 +31,9 @@ const defaultQuestions = [{
  * refactor, Create a branch with refactor_ prefix.
  * customize, Create a branch without any prefix.
  */
-const newBranchQuestions = [{
+const questions = [{
   type: 'list',
-  name: 'branchType',
+  name: 'type',
   message: 'Please select branch type ...',
   choices: ['bug', 'feature', 'refactor', 'customize']
 }, {
@@ -45,29 +46,55 @@ const newBranchQuestions = [{
  * minor, ex: v1.0.1 -> v1.1.0
  * patch, ex: v1.0.0 -> v1.0.1
  */
-const branchDoneQuestions = [{
+const questions2 = [{
   type: 'list',
-  name: 'updateType',
+  name: 'type',
   message: 'Please select update type ...',
   choices: ['major', 'minor', 'patch']
+}]
+
+const questions3 = [{
+  type: 'confirm',
+  name: 'isConfirm',
+  message: 'Do you want to merge latest develop branch into release branch?',
+}]
+
+const questions4 = [{
+  type: 'confirm',
+  name: 'isConfirm',
+  message: 'Do you want to merge latest release branch into master?',
 }]
 
 inquirer
   .prompt(defaultQuestions)
   .then((answers) => {
-    switch (answers.gitCommand) {
+    switch (answers.command) {
       case 'new branch':
         inquirer
-          .prompt(newBranchQuestions)
+          .prompt(questions)
           .then((answers) => {
             newBranch(answers.type, answers.name)
           })
         break
       case 'branch done':
         inquirer
-          .prompt(branchDoneQuestions)
+          .prompt(questions2)
           .then((answers) => {
             branchDone(answers.type)
+          })
+        break
+      case 'release':
+        inquirer
+          .prompt(questions3)
+          .then((answers) => {
+            if (answers.isConfirm) release()
+          })
+        break
+      case 'product':
+        inquirer
+          .prompt(questions4)
+          .then((answers) => {
+            if (answers.isConfirm) product()
           })
         break
       default:
