@@ -3,13 +3,12 @@
 'use strict'
 
 const inquirer = require('inquirer')
-const version = require('../package.json').version
 
 const {
   newBranch,
   branchDone,
   release,
-  product,
+  product
 } = require('../lib')
 
 /**
@@ -56,13 +55,13 @@ const questions2 = [{
 const questions3 = [{
   type: 'confirm',
   name: 'isConfirm',
-  message: 'Do you want to merge latest develop branch into release branch?',
+  message: 'Do you want to merge latest develop branch into release branch?'
 }]
 
 const questions4 = [{
   type: 'confirm',
   name: 'isConfirm',
-  message: 'Do you want to merge latest release branch into master?',
+  message: 'Do you want to merge latest release branch into master?'
 }]
 
 inquirer
@@ -87,14 +86,14 @@ inquirer
         inquirer
           .prompt(questions3)
           .then((answers) => {
-            if (answers.isConfirm) release()
+            if (answers.isConfirm) {release()}
           })
         break
       case 'product':
         inquirer
           .prompt(questions4)
           .then((answers) => {
-            if (answers.isConfirm) product()
+            if (answers.isConfirm) {product()}
           })
         break
       default:
