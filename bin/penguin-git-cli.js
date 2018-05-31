@@ -5,96 +5,59 @@
 const inquirer = require('inquirer')
 
 const {
-  newBranch,
-  branchDone,
-  release,
-  product
+  initFlow,
+  createBranch,
+  finishBranch,
+  release
 } = require('../lib')
 
-/**
- * new branch, Create a new branch/
- * branch done, Merge current branch into develop branch and update it version.
- * release, Merge latest develop branch into release branch.
- * product, Merge latest release branch into master.
- */
 const defaultQuestions = [{
   type: 'list',
   name: 'command',
   message: 'Select Command ...',
-  choices: ['new branch', 'branch done', 'release', 'product']
+  choices: [
+    'init flow',
+    'create branch',
+    'finish current branch',
+    'merge latest develop branch into release branch'
+  ]
 }]
 
 /**
- * bug, Create a branch with bug_ prefix.
- * feature, Create a branch with feature_ prefix.
- * refactor, Create a branch with refactor_ prefix.
- * customize, Create a branch without any prefix.
+ * bug, Create a branch from develop branch with bug prefix name.
+ * feature, Create a branch from develop branch with feature prefix name.
+ * refactor, Create a branch from develop branch with refactor prefix name.
+ * hotfix, Create a branch from master branch with hotfix prefix name.
  */
-const questions = [{
+const createBranchQs = [{
   type: 'list',
   name: 'type',
-  message: 'Please select branch type ...',
-  choices: ['bug', 'feature', 'refactor', 'customize']
+  message: "What's type of branch you want to create?",
+  choices: ['bug', 'feature', 'refactor', 'hotfix']
 }, {
   name: 'name',
   message: 'Please key in branch name'
-}]
-
-/**
- * major, ex: v1.1.0 -> v2.0.0
- * minor, ex: v1.0.1 -> v1.1.0
- * patch, ex: v1.0.0 -> v1.0.1
- */
-const questions2 = [{
-  type: 'list',
-  name: 'type',
-  message: 'Please select update type ...',
-  choices: ['major', 'minor', 'patch']
-}]
-
-const questions3 = [{
-  type: 'confirm',
-  name: 'isConfirm',
-  message: 'Do you want to merge latest develop branch into release branch?'
-}]
-
-const questions4 = [{
-  type: 'confirm',
-  name: 'isConfirm',
-  message: 'Do you want to merge latest release branch into master?'
 }]
 
 inquirer
   .prompt(defaultQuestions)
   .then((answers) => {
     switch (answers.command) {
-      case 'new branch':
+      case 'init flow':
+        initFlow()
+        break
+      case 'create branch':
         inquirer
-          .prompt(questions)
-          .then((answers) => {
-            newBranch(answers.type, answers.name)
+          .prompt(createBranchQs)
+          .then((createBranchAns) => {
+            createBranch(createBranchAns.type, createBranchAns.name)
           })
         break
-      case 'branch done':
-        inquirer
-          .prompt(questions2)
-          .then((answers) => {
-            branchDone(answers.type)
-          })
+      case 'finish current branch':
+        finishBranch()
         break
-      case 'release':
-        inquirer
-          .prompt(questions3)
-          .then((answers) => {
-            if (answers.isConfirm) {release()}
-          })
-        break
-      case 'product':
-        inquirer
-          .prompt(questions4)
-          .then((answers) => {
-            if (answers.isConfirm) {product()}
-          })
+      case 'merge latest develop branch into release branch':
+        release()
         break
       default:
         break
