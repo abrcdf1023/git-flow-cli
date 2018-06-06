@@ -1,11 +1,14 @@
 {
-  "name": "egroup-flow-cli",
+  "name": "@e-group/git-flow-cli",
   "version": "2.0.1",
-  "repository": "https://github.com/eGroupTeam/egroup-flow-cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eGroupTeam/git-flow-cli.git"
+  },
   "author": "JerryP <egroup.jerrylee@gmail.com>",
   "license": "MIT",
   "bin": {
-    "egroup-flow-cli": "bin/egroup-flow-cli.js"
+    "git-flow-cli": "bin/git-flow-cli.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -20,5 +23,17 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.11.0"
+  },
+  "description": "**git-flow-cli document**",
+  "bugs": {
+    "url": "https://github.com/eGroupTeam/git-flow-cli/issues"
+  },
+  "homepage": "https://github.com/eGroupTeam/git-flow-cli#readme",
+  "main": ".eslintrc.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

@@ -1,6 +1,6 @@
-# eGroup flow
+# git-flow-cli
 
-**eGroup flow document**
+**git-flow-cli document**
 
 ## Outline
 
@@ -12,20 +12,22 @@
 
 ## Overview
 
-eGroup flow is a flow which combine git flow and github flow and this is it diagram.
+This project's main purpose is to let programmers don't need to handle with complex git stuff.
 
-Inorder to let programmer don't need to handle with complex stuff so we create this cli interface.
+Our flow basic following the github-flow but the only difference is that we have a prerelease branch inorder to deploy to testing server.
+
+The reason we don't deploy in develop branch is that we still have some config need modify manually.
 
 ## Get Started
 
 ```sh
-yarn add egroup-flow-cli -D
+yarn add @e-group/git-flow-cli -D
 ```
 
 Or
 
 ```sh
-npm i egroup-flow-cli -D
+npm i @e-group/git-flow-cli -D
 ```
 
 ## create branch
@@ -45,5 +47,5 @@ Notice: Refactors will not update version. Hotfixs will merge into both master a
 
 ## prepare to prerelease
 
-This option is use to merge master branch into prerelease branch and it's important before you merge into release.
-We highly recommend to test prerelease branch in test server before product deploy.
+This option is use to merge master branch into prerelease branch.
+We highly recommend deploy prerelease branch in testing server but this is totally optional.
