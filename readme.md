@@ -19,13 +19,13 @@ Inorder to let programmer don't need to handle with complex stuff so we create t
 ## Get Started
 
 ```sh
-yarn add penguin-git-cli -D
+yarn add egroup-flow-cli -D
 ```
 
 Or
 
 ```sh
-npm i penguin-git-cli -D
+npm i egroup-flow-cli -D
 ```
 
 ## create branch

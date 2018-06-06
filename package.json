@@ -1,11 +1,11 @@
 {
-  "name": "penguin-git-cli",
+  "name": "egroup-flow-cli",
   "version": "2.0.1",
-  "repository": "https://github.com/abrcdf1023/penguin-git-cli",
-  "author": "penguinLee <egroup.jerrylee@gmail.com>",
+  "repository": "https://github.com/eGroupTeam/egroup-flow-cli",
+  "author": "JerryP <egroup.jerrylee@gmail.com>",
   "license": "MIT",
   "bin": {
-    "penguin-git-cli": "bin/penguin-git-cli.js"
+    "egroup-flow-cli": "bin/egroup-flow-cli.js"
   },
   "dependencies": {
     "chalk": "^2.4.1",
