@@ -5,7 +5,6 @@
 const inquirer = require('inquirer')
 
 const {
-  initFlow,
   createBranch,
   finishBranch,
   prerelease
@@ -16,10 +15,9 @@ const defaultQuestions = [{
   name: 'command',
   message: 'Select Command ...',
   choices: [
-    'init flow',
     'create branch',
     'finish current branch',
-    'merge latest master branch into prerelease branch'
+    'prepare to prerelease'
   ]
 }]
 
@@ -43,9 +41,6 @@ inquirer
   .prompt(defaultQuestions)
   .then((answers) => {
     switch (answers.command) {
-      case 'init flow':
-        initFlow()
-        break
       case 'create branch':
         inquirer
           .prompt(createBranchQs)
@@ -56,7 +51,7 @@ inquirer
       case 'finish current branch':
         finishBranch()
         break
-      case 'merge latest master branch into prerelease branch':
+      case 'prepare to prerelease':
         prerelease()
         break
       default:

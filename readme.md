@@ -6,10 +6,9 @@
 
 1. [Overview](#overview)
 1. [Get Started](#get-started)
-1. [init flow](#init-flow)
 1. [create branch](#create-branch)
 1. [finish current branch](#finish-current-branch)
-1. [merge latest master branch into prerelease branch](#merge-latest-master-branch-into-prerelease-branch)
+1. [prepare to prerelease](#prepare-to-prerelease)
 
 ## Overview
 
@@ -29,10 +28,6 @@ Or
 npm i penguin-git-cli -D
 ```
 
-## init flow
-
-Create nessary prerelease and release branch from Master.
-
 ## create branch
 
 Create a new branch, which includes following choice.
@@ -48,7 +43,7 @@ If bug fixed or feature done which includes any version update can use this opti
 
 Notice: Refactors will not update version. Hotfixs will merge into both master and prelease branch but with different version.The different is that master branch have the same behavior as bug branch but prelease branch add hotfix suffix.
 
-## merge latest master branch into prerelease branch
+## prepare to prerelease
 
 This option is use to merge master branch into prerelease branch and it's important before you merge into release.
 We highly recommend to test prerelease branch in test server before product deploy.
