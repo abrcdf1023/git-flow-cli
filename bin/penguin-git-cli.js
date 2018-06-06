@@ -8,7 +8,7 @@ const {
   initFlow,
   createBranch,
   finishBranch,
-  release
+  prerelease
 } = require('../lib')
 
 const defaultQuestions = [{
@@ -19,14 +19,14 @@ const defaultQuestions = [{
     'init flow',
     'create branch',
     'finish current branch',
-    'merge latest develop branch into release branch'
+    'merge latest master branch into prerelease branch'
   ]
 }]
 
 /**
- * bug, Create a branch from develop branch with bug prefix name.
- * feature, Create a branch from develop branch with feature prefix name.
- * refactor, Create a branch from develop branch with refactor prefix name.
+ * bug, Create a branch from master branch with bug prefix name.
+ * feature, Create a branch from master branch with feature prefix name.
+ * refactor, Create a branch from master branch with refactor prefix name.
  * hotfix, Create a branch from master branch with hotfix prefix name.
  */
 const createBranchQs = [{
@@ -56,8 +56,8 @@ inquirer
       case 'finish current branch':
         finishBranch()
         break
-      case 'merge latest develop branch into release branch':
-        release()
+      case 'merge latest master branch into prerelease branch':
+        prerelease()
         break
       default:
         break
